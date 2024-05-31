@@ -12,7 +12,6 @@ HOST, PORT = host, port
 try:
     client = Client((HOST, PORT))
 except ConnectionRefusedError:
-    # Создаем всплывающее окно с сообщением об ошибке
     error_window = pygame.display.set_mode((300, 200))
     error_font = pygame.font.SysFont("Arial", 24)
     error_text = error_font.render("Сервер не найден или вы\nбыли им заблокированы!", True, (255, 0, 0))
@@ -43,9 +42,9 @@ while True:
         if event.type == pygame.QUIT:
             client.sock.close()
             exit()
-    screen.fill((0, 0, 0))
+    screen.fill((0, 165, 80))
     for i in client.players:
         player = Player((i["x"], i["y"]))
         screen.blit(player.image, player.rect)
     pygame.display.update()
-    clock.tick(45)
+    clock.tick(60)
